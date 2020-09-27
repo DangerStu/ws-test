@@ -64,6 +64,7 @@ describe("Item.vue", () => {
 		});
 		expect(wrapper.text()).toContain('test-item"');
 	});
+
 	test("renders item hero href", () => {
 		const wrapper = shallowMount(Item, {
 			propsData: {
@@ -82,7 +83,7 @@ describe("Item.vue", () => {
 			},
 			provide,
 		});
-		expect(wrapper.text()).toContain("$1549.00");
+		expect(wrapper.text()).toContain("$1,549.00");
 	});
 
 	test("renders regular price range", () => {
@@ -102,7 +103,7 @@ describe("Item.vue", () => {
 			},
 			provide,
 		});
-		expect(wrapper.text()).toContain("$1316.65");
+		expect(wrapper.text()).toContain("$1,316.65");
 	});
 
 	test("renders selling price range", () => {

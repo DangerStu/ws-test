@@ -1,20 +1,26 @@
+const formatter = new Intl.NumberFormat("en-US", {
+	style: "currency",
+	currency: "USD",
+	minimumFractionDigits: 2,
+});
+
 const priceMixin = {
 	methods: {
-		fullFormatPrice(label, item, type, symbol) {
+		fullFormatPrice(label, item, type) {
 			if (item.price) {
-				return `${label} ${this.formatPrice(item.price[type], symbol)}`;
+				return `${label} ${this.formatPrice(item.price[type])}`;
 			} else if (item.priceRange) {
-				return `${label} ${this.formatPriceRange(item.priceRange[type], symbol)}`;
+				return `${label} ${this.formatPriceRange(item.priceRange[type])}`;
 			}
 			return "";
 		},
 
-		formatPrice(amount, symbol) {
-			return `${symbol}${parseFloat(amount).toFixed(2)}`;
+		formatPrice(amount) {
+			return formatter.format(amount);
 		},
 
-		formatPriceRange(amount, symbol) {
-			return `${this.formatPrice(amount.low, symbol)} - ${this.formatPrice(amount.high, symbol)}`;
+		formatPriceRange(amount) {
+			return `${this.formatPrice(amount.low)} - ${this.formatPrice(amount.high)}`;
 		},
 	},
 };
