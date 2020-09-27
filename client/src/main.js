@@ -1,5 +1,6 @@
 import Vue from "vue";
-import App from "./App.vue";
+// import App from "./App.vue";
+import ItemList from "./components/ItemList";
 import { itemsApi } from "./api/items";
 import { ModalPlugin, NavbarPlugin, FormPlugin, FormInputPlugin, ButtonPlugin, CarouselPlugin } from "bootstrap-vue";
 import "./custom.scss";
@@ -13,13 +14,16 @@ Vue.use(CarouselPlugin);
 
 itemsApi.fetch().then(({ status, data }) => {
 	console.log(status, data);
-
+	let items;
 	if (status === 200) {
-		window.items = data;
+		items = data.groups;
 	} else {
-		window.items = [];
+		items = [];
 	}
 	new Vue({
-		render: (h) => h(App),
+		data: {
+			items,
+		},
+		render: (h) => h(ItemList, { props: { items } }),
 	}).$mount("#app");
 });

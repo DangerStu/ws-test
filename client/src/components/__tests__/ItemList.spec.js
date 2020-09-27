@@ -23,20 +23,38 @@ describe("ItemList.vue", () => {
 		expect(true).toBe(true);
 	});
 
-	test("renders an Item for each item in window.items.groups", () => {
-		window.items = { groups: [{}, {}, {}] };
-		const wrapper = shallowMount(ItemList, { stubs }, localVue);
+	test("renders an Item for each item in itemsMock.groups", () => {
+		const groups = [{}, {}, {}];
+		const wrapper = shallowMount(
+			ItemList,
+			{
+				stubs,
+				propsData: {
+					items: groups,
+				},
+			},
+			localVue
+		);
 		const items = wrapper.findAllComponents(Item);
-		expect(items).toHaveLength(window.items.groups.length);
+		expect(items).toHaveLength(groups.length);
 	});
 
-	test("renders an Item with data for each item in window.items.groups", () => {
-		window.items = { groups: [{}, {}, {}] };
-		const wrapper = shallowMount(ItemList, { stubs }, localVue);
+	test("renders an Item with data for each item in itemsMock.groups", () => {
+		const groups = [{}, {}, {}];
+		const wrapper = shallowMount(
+			ItemList,
+			{
+				stubs,
+				propsData: {
+					items: groups,
+				},
+			},
+			localVue
+		);
 		const items = wrapper.findAllComponents(Item);
-		expect(items).toHaveLength(window.items.groups.length);
+		expect(items).toHaveLength(groups.length);
 		items.wrappers.forEach((wrapper, i) => {
-			expect(wrapper.props().item).toBe(window.items.groups[i]);
+			expect(wrapper.props().item).toBe(groups[i]);
 		});
 	});
 });
