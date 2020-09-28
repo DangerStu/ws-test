@@ -12,6 +12,8 @@ The outer project is a simple node/express proxy server to avoid CORS issues acc
 
 ## Project setup
 
+Because cypress is a project dependancy it will take a while for the intial install, please be patient.
+
 ```
 yarn install:all
 ```
