@@ -7,7 +7,9 @@
     centered
     size="md"
     ok-variant="secondary"
-    v-model="modelVisible"
+    v-model="modalVisible"
+    :static="true"
+    :lazy="true"
   >
     <template v-slot:modal-header>
       <div class="container">
@@ -88,7 +90,7 @@ export default {
 
   props: {
     item: Object,
-    modelVisible: Boolean,
+    modalVisible: Boolean,
   },
 
   mixins: [priceMixin],

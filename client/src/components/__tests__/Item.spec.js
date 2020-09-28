@@ -31,6 +31,15 @@ const itemRange = {
 	},
 };
 
+const createWrapper = (item, provide) => {
+	return shallowMount(Item, {
+		propsData: {
+			item,
+		},
+		provide,
+	});
+};
+
 describe("Item.vue", () => {
 	let provide;
 
@@ -46,84 +55,43 @@ describe("Item.vue", () => {
 	});
 
 	test("renders item name", () => {
-		const wrapper = shallowMount(Item, {
-			propsData: {
-				item: item,
-			},
-			provide,
-		});
+		const wrapper = createWrapper(item, provide);
 		expect(wrapper.text()).toContain(item.name);
 	});
 
 	test("renders item name with escapes", () => {
-		const wrapper = shallowMount(Item, {
-			propsData: {
-				item: itemRange,
-			},
-			provide,
-		});
+		const wrapper = createWrapper(itemRange, provide);
 		expect(wrapper.text()).toContain('test-item"');
 	});
 
 	test("renders item hero href", () => {
-		const wrapper = shallowMount(Item, {
-			propsData: {
-				item: item,
-			},
-			provide,
-		});
+		const wrapper = createWrapper(item, provide);
 		const img = wrapper.find("img");
 		expect(img.attributes().src).toBe(item.hero.href);
 	});
 
 	test("renders regular price", () => {
-		const wrapper = shallowMount(Item, {
-			propsData: {
-				item: item,
-			},
-			provide,
-		});
+		const wrapper = createWrapper(item, provide);
 		expect(wrapper.text()).toContain("$1,549.00");
 	});
 
 	test("renders regular price range", () => {
-		const wrapper = shallowMount(Item, {
-			propsData: {
-				item: itemRange,
-			},
-			provide,
-		});
+		const wrapper = createWrapper(itemRange, provide);
 		expect(wrapper.text()).toContain("$40.00 - $60.00");
 	});
 
 	test("renders selling price", () => {
-		const wrapper = shallowMount(Item, {
-			propsData: {
-				item: item,
-			},
-			provide,
-		});
+		const wrapper = createWrapper(item, provide);
 		expect(wrapper.text()).toContain("$1,316.65");
 	});
 
 	test("renders selling price range", () => {
-		const wrapper = shallowMount(Item, {
-			propsData: {
-				item: itemRange,
-			},
-			provide,
-		});
+		const wrapper = createWrapper(itemRange, provide);
 		expect(wrapper.text()).toContain("$32.00 - $48.00");
 	});
 
 	test("check showModal is getting called when the hero image is clicked", () => {
-		const wrapper = shallowMount(Item, {
-			propsData: {
-				item: itemRange,
-			},
-			provide,
-		});
-
+		const wrapper = createWrapper(itemRange, provide);
 		wrapper.find("img").trigger("click");
 		expect(provide.showModal).toHaveBeenCalled();
 	});

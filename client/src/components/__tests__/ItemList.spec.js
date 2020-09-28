@@ -1,8 +1,21 @@
 import Item from "../Item.vue";
 import ItemList from "../ItemList.vue";
 import { shallowMount, createLocalVue } from "@vue/test-utils";
-//import { BootstrapVue, ModalPlugin, NavbarPlugin, FormPlugin, FormInputPlugin, ButtonPlugin } from "bootstrap-vue";
+
 const localVue = createLocalVue();
+
+const createWrapper = (stubs, items) => {
+	return shallowMount(
+		ItemList,
+		{
+			stubs,
+			propsData: {
+				items,
+			},
+		},
+		localVue
+	);
+};
 
 describe("ItemList.vue", () => {
 	let stubs;
@@ -25,32 +38,16 @@ describe("ItemList.vue", () => {
 
 	test("renders an Item for each item in itemsMock.groups", () => {
 		const groups = [{}, {}, {}];
-		const wrapper = shallowMount(
-			ItemList,
-			{
-				stubs,
-				propsData: {
-					items: groups,
-				},
-			},
-			localVue
-		);
+
+		const wrapper = createWrapper(stubs, groups);
 		const items = wrapper.findAllComponents(Item);
 		expect(items).toHaveLength(groups.length);
 	});
 
 	test("renders an Item with data for each item in itemsMock.groups", () => {
 		const groups = [{}, {}, {}];
-		const wrapper = shallowMount(
-			ItemList,
-			{
-				stubs,
-				propsData: {
-					items: groups,
-				},
-			},
-			localVue
-		);
+
+		const wrapper = createWrapper(stubs, groups);
 		const items = wrapper.findAllComponents(Item);
 		expect(items).toHaveLength(groups.length);
 		items.wrappers.forEach((wrapper, i) => {

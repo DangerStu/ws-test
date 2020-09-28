@@ -28,7 +28,7 @@
     <div>
       <ItemModal
         :item="selectedItem"
-        :modelVisible="modelVisible"
+        :modalVisible="modalVisible"
         @changeVisible="setModalVisible"
       />
     </div>
@@ -48,7 +48,7 @@ export default {
   data: () => ({
     // items: [],
     selectedItem: null,
-    modelVisible: false,
+    modalVisible: false,
   }),
   computed: {
     selectedItemName() {
@@ -64,7 +64,7 @@ export default {
       this.setModalVisible(false);
     },
     setModalVisible(value) {
-      this.modelVisible = value;
+      this.modalVisible = value;
     },
   },
   // created() {
