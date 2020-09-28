@@ -30,7 +30,9 @@ yarn test
 
 ### run cypress e2e test
 
-This will open the cypress test window, click on the modal.spec.js to yn the test
+Make sure that both projects are running and open another terminal window.
+
+This will open the cypress test window, click on the modal.spec.js to run the test
 
 ```
 yarn test:e2e
