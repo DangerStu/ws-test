@@ -1,5 +1,5 @@
 import ItemModal from "../ItemModal.vue";
-import { shallowMount, createLocalVue, mount } from "@vue/test-utils";
+import { createLocalVue, mount } from "@vue/test-utils";
 import { BModal, BCarousel, BCarouselSlide } from "bootstrap-vue";
 
 export const waitNT = (ctx) => new Promise((resolve) => ctx.$nextTick(resolve));

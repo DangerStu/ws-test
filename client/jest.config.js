@@ -7,4 +7,5 @@ module.exports = {
 		"^.+\\.vue$": "vue-jest",
 	},
 	moduleFileExtensions: [...defaults.moduleFileExtensions, "vue"],
+	testPathIgnorePatterns: [...defaults.testPathIgnorePatterns, "cypress"],
 };
